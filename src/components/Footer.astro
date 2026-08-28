@@ -1,0 +1,61 @@
+---
+import { buildAppUrl, SUPPORT_EMAIL, TRANSLITPRO_SITE_URL } from '../config';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-slate-950 border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/logo.svg" alt="" class="w-8 h-8" aria-hidden="true" />
+          <span class="text-lg font-bold text-white">Notylus</span>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed">
+          A multilingual second brain — capture, write, and find your notes in
+          every language you use.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Product</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#features" class="text-slate-400 hover:text-white transition-colors">Features</a></li>
+          <li><a href="#how-it-works" class="text-slate-400 hover:text-white transition-colors">How it works</a></li>
+          <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="#faq" class="text-slate-400 hover:text-white transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Get started</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href={buildAppUrl('/signup')} class="text-slate-400 hover:text-white transition-colors">Create an account</a></li>
+          <li><a href={buildAppUrl('/login')} class="text-slate-400 hover:text-white transition-colors">Sign in</a></li>
+          <li><a href={`mailto:${SUPPORT_EMAIL}`} class="text-slate-400 hover:text-white transition-colors">Contact support</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-4">Also from us</h3>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href={TRANSLITPRO_SITE_URL} class="text-slate-400 hover:text-white transition-colors">
+              TranslitPro — typing in 13 scripts
+            </a>
+          </li>
+        </ul>
+        <p class="text-xs text-slate-600 mt-4 leading-relaxed">
+          Same account, same subscription. TranslitPro is the input engine
+          inside Notylus.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-slate-600">© {year} Notylus. All rights reserved.</p>
+      <p class="text-sm text-slate-600 notranslate" translate="no">notylus.net</p>
+    </div>
+  </div>
+</footer>

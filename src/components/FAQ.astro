@@ -1,0 +1,68 @@
+---
+import { TRANSLITPRO_SITE_URL } from '../config';
+
+const faqs = [
+  {
+    q: 'How is Notylus different from TranslitPro?',
+    a: 'They share one account and one subscription. TranslitPro is the typing engine — Latin letters in, another script out. Notylus is the workspace those words live in: notes, web clips, spaces, folders, language tags, and export. If all you want is to convert text, the TranslitPro site is the shorter path.',
+  },
+  {
+    q: 'Do I need the extension?',
+    a: 'No — the web app works on its own. The extension is what makes capture fast: clip an article, a selection, or one element of a page, and write notes without leaving the tab.',
+  },
+  {
+    q: 'Which languages can I type in?',
+    a: 'Thirteen scripts ship built in, including Russian, Ukrainian, Belarusian, Bulgarian, Rusyn, Tajik, Kazakh, Serbian, Armenian, Georgian, Greek, Hebrew, and Lithuanian. You can also define your own transliteration system.',
+  },
+  {
+    q: 'Is the interface available in my language?',
+    a: 'The app interface ships in over 30 languages. This marketing site is English-only for now; the localized transliteration pages live on the TranslitPro site.',
+  },
+  {
+    q: 'What happens to my notes if I stop paying?',
+    a: 'Nothing is deleted. You drop to the Free plan limits, keep read access to what you saved, and can export it at any time.',
+  },
+  {
+    q: 'Where is my data stored?',
+    a: 'In a managed Postgres database with row-level security, so a document is only ever readable by the account that owns it or the people it was explicitly shared with.',
+  },
+];
+---
+
+<section id="faq" class="py-20 sm:py-32 bg-slate-800/25">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <p class="text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-3">FAQ</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white">Questions people actually ask</h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-2xl border border-slate-700/60 bg-slate-900/60 p-5">
+          <summary class="flex items-center justify-between cursor-pointer text-white font-semibold list-none">
+            {faq.q}
+            <svg class="w-5 h-5 text-slate-500 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-slate-400 leading-relaxed">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-slate-500 mt-10">
+      Looking for transliteration on its own?
+      <a href={TRANSLITPRO_SITE_URL} class="text-indigo-300 hover:text-indigo-200 underline decoration-indigo-500/40">Visit translitpro.com</a>.
+    </p>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  })} />
+</section>

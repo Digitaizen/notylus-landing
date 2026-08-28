@@ -1,0 +1,58 @@
+---
+const pillars = [
+  {
+    eyebrow: 'Capture',
+    title: 'Save it before it is gone',
+    body: 'Clip an article, a selection, or just the part of the page you care about. Write a quick note from the browser without losing your place.',
+    points: ['Web clipper extension', 'Article, selection, or element', 'Source link kept with every clip'],
+    color: 'text-cyan-300 bg-cyan-500/10 border-cyan-500/20',
+  },
+  {
+    eyebrow: 'Write',
+    title: 'Type the way you think',
+    body: 'Write Cyrillic, Hebrew, Greek, Georgian, Armenian and more from the Latin keyboard you already have — then let AI tidy up the draft.',
+    points: ['13 scripts, no layout switching', 'AI spellcheck and rewrite', 'Mixed-language cleanup'],
+    color: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
+  },
+  {
+    eyebrow: 'Find',
+    title: 'Retrieve across languages',
+    body: 'Spaces, folders, and automatic language tags keep a multilingual library navigable — so a note saved in one language is still findable later.',
+    points: ['Spaces and folders', 'Automatic language tags', 'Export to DOCX, PDF, TXT'],
+    color: 'text-indigo-300 bg-indigo-500/10 border-indigo-500/20',
+  },
+];
+---
+
+<section id="features" class="py-20 sm:py-32 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-3">Capture · Write · Find</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">A note app that assumes you live in more than one language</h2>
+      <p class="text-lg text-slate-400">Most tools treat a second language as an edge case. Notylus treats it as the default.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      {pillars.map((pillar) => (
+        <article class="relative p-7 rounded-3xl border border-slate-700/60 bg-slate-800/45 hover:border-indigo-500/40 transition-colors overflow-hidden">
+          <div class="absolute top-0 right-0 w-44 h-44 bg-indigo-500/5 rounded-full blur-3xl"></div>
+          <div class={`relative inline-flex px-3 py-1 rounded-full text-xs font-semibold border mb-5 ${pillar.color}`}>
+            {pillar.eyebrow}
+          </div>
+          <h3 class="relative text-2xl font-bold text-white mb-3">{pillar.title}</h3>
+          <p class="relative text-slate-400 leading-relaxed mb-6">{pillar.body}</p>
+          <ul class="relative space-y-3">
+            {pillar.points.map((point) => (
+              <li class="flex items-center gap-3 text-sm text-slate-300">
+                <svg class="w-5 h-5 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

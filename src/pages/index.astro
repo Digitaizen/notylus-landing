@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Pillars from '../components/Pillars.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/FAQ.astro';
+import CallToAction from '../components/CallToAction.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Your multilingual second brain"
+  description="Notylus is a multilingual second brain: clip from the web, write in 13 scripts from a Latin keyboard, and find every note again across languages."
+>
+  <Header />
+  <main>
+    <Hero />
+    <Pillars />
+    <HowItWorks />
+    <Pricing />
+    <FAQ />
+    <CallToAction />
+  </main>
+  <Footer />
+</BaseLayout>

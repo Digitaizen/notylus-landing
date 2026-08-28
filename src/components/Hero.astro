@@ -1,0 +1,94 @@
+---
+import { buildAppUrl } from '../config';
+---
+
+<section class="relative pt-32 pb-20 sm:pt-40 sm:pb-28 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/25 via-slate-900 to-slate-900"></div>
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[620px] bg-indigo-500/20 rounded-full blur-3xl"></div>
+  <div class="absolute top-32 right-0 w-[520px] h-[420px] bg-emerald-500/10 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-16 items-center">
+      <div class="text-center lg:text-left">
+        <div class="inline-flex items-center px-4 py-1.5 text-sm font-medium text-indigo-300 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-6">
+          <span class="mr-2">✦</span>
+          Your multilingual second brain
+        </div>
+
+        <h1 class="text-[clamp(2.25rem,6vw,4.75rem)] font-bold tracking-tight text-white leading-[1.02] mb-6">
+          Capture in any language. <span style="color:#20b571">Find</span> it in <span style="color:#6c65d4">yours</span>.
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+          Notylus is where your notes, web clips, and drafts live when your life
+          does not happen in a single language. Save anything, write in any
+          script, and get it back without remembering which language you saved
+          it in.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+          <a
+            href={buildAppUrl('/signup')}
+            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-500 rounded-xl shadow-lg shadow-indigo-500/25 transition-all hover:shadow-indigo-500/40"
+          >
+            Start Free
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <a
+            href="#how-it-works"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors"
+          >
+            See How It Works
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm text-slate-500">
+          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Free plan, no card</span>
+          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>13 scripts built in</span>
+          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Browser extension</span>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-5 bg-gradient-to-tr from-indigo-500/20 to-emerald-500/10 rounded-[2rem] blur-2xl"></div>
+        <div class="relative bg-slate-950/90 border border-slate-700/70 rounded-3xl shadow-2xl overflow-hidden">
+          <div class="flex items-center justify-between px-5 py-4 border-b border-slate-800 bg-slate-900/80">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="text-xs text-slate-500">Research · Synced</div>
+          </div>
+          <div class="grid md:grid-cols-[180px_1fr] min-h-[430px]">
+            <aside class="hidden md:block border-r border-slate-800 p-4 bg-slate-900/50">
+              <div class="text-xs uppercase tracking-wider text-slate-500 mb-3">Spaces</div>
+              {['Inbox', 'Research', 'Family', 'Web clippings'].map((item, index) => (
+                <div class={`px-3 py-2 rounded-lg text-sm mb-2 ${index === 1 ? 'bg-indigo-500/15 text-indigo-200' : 'text-slate-400'}`}>{item}</div>
+              ))}
+            </aside>
+            <div class="p-5 sm:p-7">
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="px-3 py-1 text-xs rounded-full bg-indigo-500/15 text-indigo-200 border border-indigo-500/20">Russian</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-emerald-500/15 text-emerald-200 border border-emerald-500/20">Hebrew</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-200 border border-cyan-500/20">webclip</span>
+              </div>
+              <div class="space-y-4 font-mono text-sm sm:text-base">
+                <p class="text-slate-500 notranslate" translate="no">Privet, segodnya ya rabotayu nad mnogoyazychnym dokumentom...</p>
+                <p class="text-indigo-200 notranslate" translate="no">Привет, сегодня я работаю над многоязычным документом...</p>
+                <p class="text-slate-500 notranslate" translate="no">Shalom, ani tsarikh livdok et ha-nusah lifnei shlichah.</p>
+                <p class="text-emerald-200 notranslate" dir="rtl" translate="no">שלום, אני צריך לבדוק את הנוסח לפני שליחה.</p>
+              </div>
+              <div class="mt-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+                <div class="text-sm font-semibold text-emerald-200 mb-1">Saved from the web</div>
+                <p class="text-sm text-slate-300">Clipped articles keep their source link, get language-tagged automatically, and land in the space you chose.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

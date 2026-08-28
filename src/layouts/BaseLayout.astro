@@ -1,0 +1,81 @@
+---
+/**
+ * Base document shell for every Notylus marketing page.
+ *
+ * English-only by design for now: the localized routes live on
+ * `www.translitpro.com`, and Notylus copy has not been translated yet. When it
+ * is, add the `i18n` config and hreflang block rather than duplicating pages.
+ */
+
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalURL?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalURL = Astro.url.href,
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+/**
+ * Absolute URL for the social card. Facebook, X, LinkedIn and Slack all reject
+ * a relative `og:image`, and none of them render SVG — hence the PNG
+ * (`public/og-image.svg` is kept as the editable source).
+ */
+const ogImageURL = new URL(ogImage, Astro.site ?? Astro.url).href;
+
+const siteName = 'Notylus';
+const fullTitle = `${title} | ${siteName}`;
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={siteName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Notylus',
+      applicationCategory: 'ProductivityApplication',
+      operatingSystem: 'Web',
+      description:
+        'Notylus is a multilingual second brain: capture notes and web clips, write in any script, and find everything again across languages.',
+      url: 'https://www.notylus.net',
+    })} />
+  </head>
+  <body class="bg-slate-900 text-white antialiased">
+    <slot />
+  </body>
+</html>

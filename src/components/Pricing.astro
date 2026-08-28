@@ -1,0 +1,135 @@
+---
+import { buildAppUrl } from '../config';
+import { getPricingTiers } from '../features/pricing/getPricingTiers';
+
+const pricing = getPricingTiers();
+
+const plans = [
+  {
+    name: 'Free',
+    price: pricing.free.price,
+    period: 'forever',
+    costPerDay: null,
+    annual: null,
+    description: 'Enough to keep a small multilingual library.',
+    features: [
+      'Notes and web clips',
+      '13 scripts for typing',
+      'Spaces, folders, and tags',
+      'A taste of the AI tools',
+    ],
+    cta: 'Start Free',
+    href: buildAppUrl('/signup'),
+    featured: false,
+  },
+  {
+    name: 'Basic',
+    price: pricing.basic.price,
+    period: 'per month',
+    costPerDay: pricing.showCostPerDay ? pricing.basic.costPerDay : null,
+    annual: { price: pricing.basic.annualPrice, savings: pricing.basic.annualSavings },
+    description: 'For steady day-to-day capture and writing.',
+    features: [
+      'Everything in Free',
+      'More documents and storage',
+      'Daily AI spellcheck and rewrite',
+      'DOCX, PDF, and TXT export',
+    ],
+    cta: 'Choose Basic',
+    href: buildAppUrl('/signup', 'plan=basic'),
+    featured: false,
+  },
+  {
+    name: 'Pro',
+    price: pricing.pro.price,
+    period: 'per month',
+    costPerDay: pricing.showCostPerDay ? pricing.pro.costPerDay : null,
+    annual: { price: pricing.pro.annualPrice, savings: pricing.pro.annualSavings },
+    description: 'For people whose whole workday is multilingual.',
+    features: [
+      'Everything in Basic',
+      'The highest AI daily limits',
+      'Document scan and reformat',
+      'Priority support',
+    ],
+    cta: 'Choose Pro',
+    href: buildAppUrl('/signup', 'plan=pro'),
+    featured: true,
+  },
+];
+---
+
+<section id="pricing" class="py-20 sm:py-32 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-3">Pricing</p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">One subscription, both apps</h2>
+      <p class="text-lg text-slate-400">
+        Your plan covers Notylus and TranslitPro — the workspace and the typing
+        engine are the same account.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 items-start">
+      {plans.map((plan) => (
+        <article
+          class={`relative p-7 rounded-3xl border bg-slate-800/45 ${
+            plan.featured ? 'border-indigo-500/60 shadow-lg shadow-indigo-500/10' : 'border-slate-700/60'
+          }`}
+        >
+          {plan.featured && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-xs font-semibold rounded-full bg-indigo-600 text-white">
+              Most popular
+            </div>
+          )}
+
+          <h3 class="text-xl font-bold text-white mb-2">{plan.name}</h3>
+          <p class="text-sm text-slate-400 mb-6 min-h-[2.5rem]">{plan.description}</p>
+
+          <div class="flex items-baseline gap-1 mb-1">
+            <span class="text-4xl font-bold text-white notranslate" translate="no">{plan.price}</span>
+            <span class="text-sm text-slate-500">/ {plan.period}</span>
+          </div>
+          {plan.costPerDay && (
+            <p class="text-xs text-slate-500 mb-1 notranslate" translate="no">
+              ~{pricing.currencySymbol}{plan.costPerDay} a day
+            </p>
+          )}
+          {plan.annual && (
+            <p class="text-xs text-emerald-300 mb-6 notranslate" translate="no">
+              {plan.annual.price} billed yearly — save {plan.annual.savings}
+            </p>
+          )}
+          {!plan.annual && <div class="mb-6"></div>}
+
+          <a
+            href={plan.href}
+            class={`block w-full text-center px-6 py-3 rounded-xl font-semibold transition-colors mb-7 ${
+              plan.featured
+                ? 'bg-indigo-600 hover:bg-indigo-500 text-white'
+                : 'bg-slate-700 hover:bg-slate-600 text-white'
+            }`}
+          >
+            {plan.cta}
+          </a>
+
+          <ul class="space-y-3">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm text-slate-300">
+                <svg class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-slate-500 mt-10">
+      Exact per-feature limits are shown in the app and can change as the AI
+      tooling evolves.
+    </p>
+  </div>
+</section>

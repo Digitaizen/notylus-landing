@@ -1,0 +1,97 @@
+---
+/**
+ * Fixed site header.
+ *
+ * The "Sign In" → "Back to App" swap runs inline, before first paint, off the
+ * `tp_logged_in` cookie — the same no-flicker pattern the TranslitPro site uses.
+ * It only fires once the app sets that cookie on `.notylus.net` as well as
+ * `.translitpro.com`; until then logged-in visitors simply see "Sign In", which
+ * still works.
+ */
+
+import { buildAppUrl } from '../config';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50">
+  <div class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <nav class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-2.5">
+          <img src="/logo.svg" alt="" class="w-9 h-9" aria-hidden="true" />
+          <span class="text-xl font-bold tracking-tight text-white">Notylus</span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
+          <a href="#features" class="text-slate-300 hover:text-white transition-colors">Features</a>
+          <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors">How it works</a>
+          <a href="#pricing" class="text-slate-300 hover:text-white transition-colors">Pricing</a>
+          <a href="#faq" class="text-slate-300 hover:text-white transition-colors">FAQ</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            id="header-auth-btn"
+            href={buildAppUrl('/login')}
+            data-app-url={buildAppUrl('/')}
+            class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors"
+          >
+            <svg id="header-icon-signin" class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            <svg id="header-icon-back" class="w-5 h-5 text-slate-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span id="header-auth-label" class="text-sm text-slate-300">Sign In</span>
+          </a>
+
+          <a
+            id="header-start-btn"
+            href={buildAppUrl('/signup')}
+            class="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg transition-colors text-sm font-medium text-white"
+          >
+            Start Free
+          </a>
+
+          <button id="mobile-menu-button" class="md:hidden p-2 text-slate-400 hover:text-white" aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden pb-4">
+        <div class="flex flex-col space-y-4 pt-4 border-t border-slate-800">
+          <a href="#features" class="text-slate-300 hover:text-white transition-colors">Features</a>
+          <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors">How it works</a>
+          <a href="#pricing" class="text-slate-300 hover:text-white transition-colors">Pricing</a>
+          <a href="#faq" class="text-slate-300 hover:text-white transition-colors">FAQ</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.getElementById('mobile-menu-button')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  (function () {
+    const isLoggedIn = document.cookie.split(';').some((c) => c.trim().startsWith('tp_logged_in='));
+    if (!isLoggedIn) return;
+
+    const btn = document.getElementById('header-auth-btn') as HTMLAnchorElement | null;
+    const label = document.getElementById('header-auth-label');
+
+    if (btn) btn.href = btn.dataset.appUrl ?? btn.href;
+    if (label) label.textContent = 'Back to App';
+    document.getElementById('header-icon-signin')?.classList.add('hidden');
+    document.getElementById('header-icon-back')?.classList.remove('hidden');
+    document.getElementById('header-start-btn')?.classList.add('hidden');
+  })();
+</script>
