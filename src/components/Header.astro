@@ -10,6 +10,17 @@
  */
 
 import { buildAppUrl } from '../config';
+
+// Wordmark: Goldman 700, uppercase, matching the app header. The gradient runs at full
+// accent across the leading 4 of 7 characters ("NOTY") then fades to 45%.
+const wordmarkStyle = [
+  "font-family: 'Goldman', sans-serif",
+  'letter-spacing: 0.08em',
+  'background-image: linear-gradient(90deg, #818cf8, #818cf8 57.14%, color-mix(in srgb, #818cf8 45%, transparent))',
+  '-webkit-background-clip: text',
+  'background-clip: text',
+  'color: transparent',
+].join('; ');
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50">
@@ -17,8 +28,8 @@ import { buildAppUrl } from '../config';
     <nav class="w-full px-4 sm:px-6 lg:px-8">
       <div class="relative flex items-center justify-between h-16">
         <a href="/" class="flex items-center gap-2.5">
-          <img src="/logo.svg" alt="" class="w-9 h-9" aria-hidden="true" />
-          <span class="text-xl font-bold tracking-tight text-white">Notylus</span>
+          <img src="/logo.png" alt="" class="h-9 w-auto" aria-hidden="true" />
+          <span class="text-xl font-bold uppercase" style={wordmarkStyle}>Notylus</span>
         </a>
 
         <div class="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">

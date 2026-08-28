@@ -76,21 +76,55 @@ never sees the wrong label flash. **This only works once the app sets that
 cookie on `.notylus.net`** as well as `.translitpro.com`; until then logged-in
 visitors just see “Sign In”, which still works.
 
+### Brand assets
+
+The mark is the **nautilus shell** (`public/logo.png`), and the wordmark is
+"NOTYLUS" set in the Google Font **Goldman** 700, uppercase, `letter-spacing:
+0.08em`, with a horizontal gradient that stays at full accent across the leading
+4 of 7 characters ("NOTY") and then fades to 45%. All of that mirrors the app
+exactly — see `TITLE_FONT_FAMILY` / `TITLE_EMPHASIS_LENGTH` in the main repo's
+`src/components/Header.tsx` and the `.sp-title` rule in its `index.html`.
+
+`logo.png` and the favicon set (`favicon.ico`, `favicon-16x16.png`,
+`favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-*.png`) are copied
+from the main repo's `public/`. `logo.png` is downscaled to 256 px here — the
+canonical 1122×1402 original stays in the app repo, and shipping it as-is put a
+1.1 MB PNG in the header. Note it is **not square** (205×256 after the
+downscale), so size it with `h-N w-auto`, never `w-N h-N`.
+
+Do not reintroduce a lettermark placeholder. Fix the logo in the app repo first,
+then re-copy.
+
 ### Social card
 
 `public/og-image.png` is what the meta tags point at — social scrapers reject
 relative URLs and none of them render SVG, so `BaseLayout.astro` resolves it to
 an absolute URL against `Astro.site`. `public/og-image.svg` is the editable
-source; regenerate the PNG after changing it:
+source. It references `logo.png` via `<image>` and names Goldman for the
+wordmark, neither of which ImageMagick's SVG renderer handles, so the PNG is
+composited directly instead of converted from the SVG — keep the two in sync by
+hand:
 
 ```bash
-convert -background none -density 200 public/og-image.svg -resize 1200x630 \
-  public/og-image.png
+curl -s "$(curl -s 'https://fonts.googleapis.com/css2?family=Goldman:wght@700' \
+  -H 'User-Agent: Mozilla/5.0' | grep -o 'https://[^)]*\.ttf' | tail -1)" \
+  -o /tmp/Goldman-Bold.ttf
+convert -size 1200x630 -define gradient:direction=NorthWest \
+  gradient:'#0f172a-#1e1b4b' /tmp/og-bg.png
+convert /tmp/og-bg.png \
+  \( public/logo.png -resize x140 \) -gravity NorthWest -geometry +80+108 -composite \
+  -font /tmp/Goldman-Bold.ttf -pointsize 78 -fill '#818cf8' -kerning 6 -annotate +212+140 'NOTYLUS' \
+  -font DejaVu-Sans-Bold -pointsize 56 -fill '#ffffff' -kerning 0 -annotate +80+330 'Your multilingual second brain.' \
+  -font DejaVu-Sans -pointsize 34 -fill '#94a3b8' -annotate +80+412 'Capture in any language. Find it in yours.' \
+  -font DejaVu-Sans -pointsize 30 -fill '#818cf8' -annotate +80+520 'www.notylus.net' \
+  -depth 8 -strip public/og-image.png
 ```
 
-The SVG uses a single `font-family="DejaVu Sans"` deliberately: ImageMagick's
-SVG renderer reads only the first family in a list and fails on a comma-separated
-stack, silently dropping every text element from the PNG.
+With `gravity NorthWest`, `-annotate +x+y` places the **top** of the em box at
+`y`, not the baseline — which is why the wordmark's `y` is ~40 px above the
+logo's. Any `font-family` passed to ImageMagick must be a single family: its SVG
+renderer reads only the first entry in a comma-separated stack and silently
+drops every text element from the output.
 
 ### Generated files
 

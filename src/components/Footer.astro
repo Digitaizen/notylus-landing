@@ -2,6 +2,9 @@
 import { buildAppUrl, SUPPORT_EMAIL, TRANSLITPRO_SITE_URL } from '../config';
 
 const year = new Date().getFullYear();
+
+// Wordmark: Goldman 700, uppercase, matching the app header (plain white here).
+const wordmarkStyle = "font-family: 'Goldman', sans-serif; letter-spacing: 0.08em";
 ---
 
 <footer class="bg-slate-950 border-t border-slate-800">
@@ -9,8 +12,8 @@ const year = new Date().getFullYear();
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
       <div>
         <div class="flex items-center gap-2.5 mb-4">
-          <img src="/logo.svg" alt="" class="w-8 h-8" aria-hidden="true" />
-          <span class="text-lg font-bold text-white">Notylus</span>
+          <img src="/logo.png" alt="" class="h-8 w-auto" aria-hidden="true" />
+          <span class="text-lg font-bold uppercase text-white" style={wordmarkStyle}>Notylus</span>
         </div>
         <p class="text-sm text-slate-500 leading-relaxed">
           A multilingual second brain — capture, write, and find your notes in

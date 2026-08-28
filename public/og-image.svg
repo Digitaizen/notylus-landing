@@ -1,19 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0f172a"/>
       <stop offset="1" stop-color="#1e1b4b"/>
     </linearGradient>
-    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#6c65d4"/>
-      <stop offset="1" stop-color="#20b571"/>
-    </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect x="80" y="150" width="96" height="96" rx="22" fill="url(#mark)"/>
-  <path d="M104 222V174h10.4l24.5 31.6V174H150v48h-10.4l-24.5-31.6V222z" fill="#fff"/>
-  <text x="200" y="222" font-family="DejaVu Sans" font-size="72" font-weight="700" fill="#ffffff">Notylus</text>
-  <text x="80" y="360" font-family="DejaVu Sans" font-size="58" font-weight="700" fill="#ffffff">Your multilingual second brain.</text>
-  <text x="80" y="440" font-family="DejaVu Sans" font-size="34" fill="#94a3b8">Capture in any language. Find it in yours.</text>
-  <text x="80" y="530" font-family="DejaVu Sans" font-size="30" fill="#6c65d4">www.notylus.net</text>
+  <image xlink:href="logo.png" x="80" y="108" height="140"/>
+  <text x="212" y="205" font-family="Goldman" font-size="78" font-weight="700" letter-spacing="6" fill="#818cf8">NOTYLUS</text>
+  <text x="80" y="382" font-family="DejaVu Sans" font-size="56" font-weight="700" fill="#ffffff">Your multilingual second brain.</text>
+  <text x="80" y="443" font-family="DejaVu Sans" font-size="34" fill="#94a3b8">Capture in any language. Find it in yours.</text>
+  <text x="80" y="548" font-family="DejaVu Sans" font-size="30" fill="#818cf8">www.notylus.net</text>
 </svg>
