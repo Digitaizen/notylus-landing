@@ -145,3 +145,20 @@ annotation.
 - Custom domain `www.notylus.net`, with the apex redirecting to `www`.
 - Optional `PUBLIC_APP_URL` environment variable to point CTAs at a non-default
   app host.
+- Required `PUBLIC_SUPABASE_URL` / `PUBLIC_SUPABASE_ANON_KEY` — the anon key
+  from the `translit-pro` repo's Supabase project. Read by `Header.astro`'s
+  client script to fetch `public.app_status_banner.notylus_show` over
+  PostgREST (no `@supabase/supabase-js` dependency). This is a static build,
+  so these must be set in Cloudflare Pages *before* building — they're
+  inlined at build time, not read at runtime.
+
+## Reconstruction / Beta banner
+
+`Header.astro` renders a dismissable notice ("Notylus is under
+reconstruction and in Beta…") whose visibility is controlled from
+`public.app_status_banner.notylus_show` (Supabase table shared with the
+`translit-pro` app and `translit-pro-landing`, each keyed to its own
+column) — flip it in the Supabase dashboard, no redeploy needed. A visitor's
+dismissal (✕) persists for the browser session via `sessionStorage`
+(`notylus_status_banner_dismissed`), so it reappears next session while the
+flag is still on.
