@@ -20,7 +20,7 @@ import { buildAppUrl } from '../config';
         </h1>
 
         <p class="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
-          Notylus is where your notes, web clips, and drafts live when your life
+          Notylus is where your notes, research and drafts live when your life
           does not happen in a single language. Save anything, write in any
           script, and get it back without remembering which language you saved
           it in.
@@ -47,7 +47,7 @@ import { buildAppUrl } from '../config';
         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-3 text-sm text-slate-500">
           <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Free plan, no card</span>
           <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>13 scripts built in</span>
-          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Browser extension</span>
+          <span class="inline-flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Works in any browser</span>
         </div>
       </div>
 
@@ -65,7 +65,7 @@ import { buildAppUrl } from '../config';
           <div class="grid md:grid-cols-[180px_1fr] min-h-[430px]">
             <aside class="hidden md:block border-r border-slate-800 p-4 bg-slate-900/50">
               <div class="text-xs uppercase tracking-wider text-slate-500 mb-3">Spaces</div>
-              {['Inbox', 'Research', 'Family', 'Web clippings'].map((item, index) => (
+              {['Inbox', 'Research', 'Family', 'Reading list'].map((item, index) => (
                 <div class={`px-3 py-2 rounded-lg text-sm mb-2 ${index === 1 ? 'bg-indigo-500/15 text-indigo-200' : 'text-slate-400'}`}>{item}</div>
               ))}
             </aside>
@@ -73,7 +73,7 @@ import { buildAppUrl } from '../config';
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="px-3 py-1 text-xs rounded-full bg-indigo-500/15 text-indigo-200 border border-indigo-500/20">Russian</span>
                 <span class="px-3 py-1 text-xs rounded-full bg-emerald-500/15 text-emerald-200 border border-emerald-500/20">Hebrew</span>
-                <span class="px-3 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-200 border border-cyan-500/20">webclip</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-200 border border-cyan-500/20">research</span>
               </div>
               <div class="space-y-4 font-mono text-sm sm:text-base">
                 <p class="text-slate-500 notranslate" translate="no">Privet, segodnya ya rabotayu nad mnogoyazychnym dokumentom...</p>
