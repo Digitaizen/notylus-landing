@@ -2,7 +2,7 @@
 import { buildAppUrl, TRANSLITPRO_SITE_URL } from '../config';
 
 const workflow = [
-  { label: 'Capture', title: 'Clip or jot it down', body: 'One click from the extension, or a note typed straight into the popup.' },
+  { label: 'Capture', title: 'Clip or jot it down', body: 'One click from the extension, a note typed straight into its popup, or the bookmarklet if you would rather not install anything.' },
   { label: 'Organize', title: 'It files itself', body: 'Spaces, folders, and language tags are applied as it lands — not later.' },
   { label: 'Retrieve', title: 'Find it in any language', body: 'Search, filter by language, then export or keep writing where you left off.' },
 ];
@@ -17,7 +17,8 @@ const workflow = [
         <p class="text-lg text-slate-400 leading-relaxed mb-8">
           Notylus runs in the browser and in the extension, so capture happens
           where you already are. Typing in another script is powered by the same
-          engine behind <a href={TRANSLITPRO_SITE_URL} class="text-indigo-300 hover:text-indigo-200 underline decoration-indigo-500/40">TranslitPro</a>.
+          engine behind <a href={TRANSLITPRO_SITE_URL} class="text-indigo-300 hover:text-indigo-200 underline decoration-indigo-500/40">TranslitPro</a>,
+          which you can try for free before you sign up.
         </p>
 
         <div class="space-y-5 mb-8">
